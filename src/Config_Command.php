@@ -1054,4 +1054,41 @@ class Config_Command extends WP_CLI_Command {
 
 		return $value;
 	}
+
+	/**
+	 * Evaluate whether a specific constant or variable defined in wp-config.php file is truthy.
+	 *
+	 * ## OPTIONS
+	 *
+	 * <name>
+	 * : Name of the wp-config.php constant or variable.
+	 *
+	 * [--type=<type>]
+	 * : Type of config value to retrieve. Defaults to 'all'.
+	 * ---
+	 * default: all
+	 * options:
+	 *   - constant
+	 *   - variable
+	 *   - all
+	 * ---
+	 * 
+	 * [--config-file=<path>]
+	 * : Specify the file path to the config file to be read. Defaults to the root of the
+	 * WordPress installation and the filename "wp-config.php".
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Assert if MULTISITE is true
+	 *     $ wp config is-true MULTISITE
+	 *
+	 * @when before_wp_load
+	 */
+	public function is_true( $args, $assoc_args ) {
+		$value = $this->get ($args, $assoc_args );
+		if ( boolval($value) ) {
+			WP_CLI::halt( 0 );
+		}
+		WP_CLI::halt( 1 );
+	}
 }
