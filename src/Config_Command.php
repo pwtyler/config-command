@@ -1072,7 +1072,7 @@ class Config_Command extends WP_CLI_Command {
 	 *   - variable
 	 *   - all
 	 * ---
-	 * 
+	 *
 	 * [--config-file=<path>]
 	 * : Specify the file path to the config file to be read. Defaults to the root of the
 	 * WordPress installation and the filename "wp-config.php".
@@ -1085,8 +1085,8 @@ class Config_Command extends WP_CLI_Command {
 	 * @when before_wp_load
 	 */
 	public function is_true( $args, $assoc_args ) {
-		$value = $this->get ($args, $assoc_args );
-		if ( boolval($value) ) {
+		$value = $this->get( $args, $assoc_args );
+		if ( boolval( $value ) ) {
 			WP_CLI::halt( 0 );
 		}
 		WP_CLI::halt( 1 );
